@@ -20,8 +20,8 @@ const Hero = () => {
 
     const bottom = new Image()
     const top    = new Image()
-    bottom.src = '/images/one.png'
-    top.src    = '/images/twoo.png'
+    bottom.src = '/images/twoo.jpg'
+    top.src    = '/images/one.jpg'
 
     const resize = () => {
       canvas.width  = hero.offsetWidth
@@ -57,10 +57,8 @@ const Hero = () => {
       const trail = trailRef.current
       ctx.clearRect(0, 0, width, height)
 
-      // 1. base image
       ctx.drawImage(bottom, 0, 0, width, height)
 
-      // 2. offscreen masked reveal
       const offscreen = document.createElement('canvas')
       offscreen.width  = width
       offscreen.height = height
@@ -81,23 +79,22 @@ const Hero = () => {
 
       ctx.drawImage(offscreen, 0, 0)
 
-      // 3. cursor head glow — crimson tint for Money Heist
+      // 3. cursor head glow — golden bat-signal tint
       if (trail.length > 0) {
         const head = trail[0]
         const glow = ctx.createRadialGradient(
           head.x, head.y, 0,
           head.x, head.y, HEAD_RADIUS * 1.4
         )
-        glow.addColorStop(0,   'rgba(192, 0, 26, 0.22)')
-        glow.addColorStop(0.5, 'rgba(192, 0, 26, 0.11)')
+        glow.addColorStop(0,   'rgba(232, 180, 30, 0.22)')
+        glow.addColorStop(0.5, 'rgba(232, 180, 30, 0.10)')
         glow.addColorStop(1,   'rgba(0,0,0,0)')
         ctx.beginPath()
         ctx.arc(head.x, head.y, HEAD_RADIUS * 1.4, 0, Math.PI * 2)
-       ctx.fillStyle = glow
-       ctx.fill()
+        ctx.fillStyle = glow
+        ctx.fill()
       }
-      rafId= requestAnimationFrame(draw)
-
+      rafId = requestAnimationFrame(draw)
     }
 
     let loaded = 0
@@ -112,7 +109,6 @@ const Hero = () => {
     }
   }, [])
 
-  /* ── Framer Motion variants ── */
   const container = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.2 } },
@@ -131,15 +127,12 @@ const Hero = () => {
   return (
     <div className="hero" ref={heroRef}>
 
-      {/* canvas sits behind everything */}
       <canvas ref={canvasRef} className="hero-canvas" />
 
-      {/* navbar on top */}
       <motion.div variants={navbarVariant} initial="hidden" animate="visible">
         <Navbar />
       </motion.div>
 
-      {/* content on top */}
       <motion.div
         className="hero-content"
         variants={container}
@@ -148,32 +141,41 @@ const Hero = () => {
       >
         {/* LEFT */}
         <motion.div className="left" variants={item}>
-          <motion.span className="st-eyebrow" variants={item}>
-            La Casa de Papel
+          <motion.span className="st-eyebrow" variants={item}
+            style={{ fontFamily: "'Cinzel', serif", letterSpacing: '0.25em' }}>
+            Gotham City
           </motion.span>
-          <h1 className="st-title">
-            MONEY<br />HEIST
+          <h1 className="st-title"
+            style={{ fontFamily: "'Bebas Neue', 'Cinzel Decorative', cursive", letterSpacing: '0.05em' }}>
+            THE DARK<br />KNIGHT
           </h1>
-          <motion.p className="st-desc" variants={item}>
-            They came armed with a plan, red jumpsuits, and nothing left to lose.
-            The Royal Mint of Spain would never be the same.
-            Bella Ciao — this is not a robbery, it's a revolution.
+          <motion.p className="st-desc" variants={item}
+            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: 'italic' }}>
+            He is vengeance. He is the night. Born from tragedy, forged in shadow —
+            Gotham's last hope wears no badge, carries no gun,
+            and fears nothing but the day his city stops fighting back.
           </motion.p>
-          <motion.button className="st-btn" variants={item}>
-            Unirse al Plan
+          <motion.button className="st-btn" variants={item}
+            style={{ fontFamily: "'Cinzel', serif", letterSpacing: '0.2em' }}>
+            Enter the Dark
           </motion.button>
         </motion.div>
 
         {/* RIGHT */}
         <motion.div className="right" variants={item}>
-          <motion.span className="st-eyebrow right-eyebrow" variants={item}>
-            El Profesor
+          <motion.span className="st-eyebrow right-eyebrow" variants={item}
+            style={{ fontFamily: "'Cinzel', serif", letterSpacing: '0.25em' }}>
+            Bruce Wayne
           </motion.span>
-          <h1 className="st-title">The Master<br />of the Plan</h1>
-          <motion.p className="st-text" variants={item}>
-            Every detail calculated. Every move rehearsed a thousand times.
-            He never pulls the trigger — his weapon is the mind.
-            Can an army of thieves outwit an entire nation?
+          <h1 className="st-title"
+            style={{ fontFamily: "'Bebas Neue', 'Cinzel Decorative', cursive", letterSpacing: '0.05em' }}>
+            The Man<br />Behind the Mask
+          </h1>
+          <motion.p className="st-text" variants={item}
+            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: 'italic' }}>
+            Billionaire by day. Guardian by night. Every scar a lesson,
+            every shadow a weapon. He doesn't kill — but the darkness obeys him.
+            Can one man's will hold a city together when evil never sleeps?
           </motion.p>
         </motion.div>
       </motion.div>

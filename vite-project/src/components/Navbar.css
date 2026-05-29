@@ -18,8 +18,9 @@
 
 /* ── Logo ─────────────────────────────────── */
 .nav-logo {
-  font-family: 'Anton', sans-serif;
-  font-size: 22px;
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 0.1em;
+    font-size: 22px;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: #fff;
@@ -36,6 +37,8 @@
   display: flex;
   gap: 36px;
   list-style: none;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.15em;
 }
 
 .nav-links li {

@@ -4,13 +4,13 @@ import './Navbar.css'
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <div className="nav-logo">LA CASA <span>DE PAPEL</span></div>
+      <div className="nav-logo">THE DARK <span>KNIGHT</span></div>
 
       <ul className="nav-links">
-        <li>Inicio</li>
-        <li>El Profesor</li>
-        <li>La Banda</li>
-        <li>El Plan</li>
+        <li>Gotham</li>
+        <li>Bruce Wayne</li>
+        <li>The Rogues</li>
+        <li>The Mission</li>
       </ul>
     </nav>
   )
